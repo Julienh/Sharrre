@@ -1,6 +1,6 @@
 /*
  *  Sharrre.com - Make your sharing widget!
- *  Version: beta 1.3.1 
+ *  Version: beta 1.3.2 
  *  Author: Julien Hany
  *  License: MIT http://en.wikipedia.org/wiki/MIT_License or GPLv2 http://en.wikipedia.org/wiki/GNU_General_Public_License
  */
@@ -134,7 +134,7 @@
     },
     facebook : function(self){
       var sett = self.options.buttons.facebook;
-      $(self.element).find('.buttons').append('<div class="button facebook"><div class="fb-like" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-send="'+sett.send+'" data-layout="'+sett.layout+'" data-width="'+sett.width+'" data-show-faces="'+sett.faces+'" data-action="'+sett.action+'" data-colorscheme="'+sett.colorscheme+'" data-font="'+sett.font+'" data-via="'+sett.via+'"></div></div>');
+      $(self.element).find('.buttons').append('<div class="button facebook"><div id="fb-root"></div><div class="fb-like" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-send="'+sett.send+'" data-layout="'+sett.layout+'" data-width="'+sett.width+'" data-show-faces="'+sett.faces+'" data-action="'+sett.action+'" data-colorscheme="'+sett.colorscheme+'" data-font="'+sett.font+'" data-via="'+sett.via+'"></div></div>');
       var loading = 0;
       if(typeof FB === 'undefined' && loading == 0){
         loading = 1;
@@ -472,6 +472,11 @@
         self.rendererPerso();
        });
     }
+    else{
+      self.renderer();
+      self.options.count[name] = 0;
+      self.rendererPerso();
+    }
   };
   
   /* launch render methode
@@ -493,6 +498,7 @@
     if(this.options.shorterTotal === true){  //format number like 1.2k or 5M
       total = this.shorterTotal(total);
     }
+    
     if(template !== ''){  //if there is a template
       template = template.replace('{total}', total);
       $(this.element).html(template);
