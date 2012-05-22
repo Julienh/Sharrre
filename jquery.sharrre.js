@@ -443,7 +443,7 @@
       url = urlJson[name].replace('{url}', this.options.buttons[name].url);
     }
     //console.log('name : ' + name + ' - url : '+url); //debug
-    if(url != '' && self.options.urlCurl !== ''){  //urlCurl = '' if you don't want to used PHP script but used social button
+    if(url != ''){  //urlCurl = '' if you don't want to used PHP script but used social button
       $.getJSON(url, function(json){
         if(typeof json.count !== "undefined"){  //GooglePlus, Stumbleupon, Twitter and Digg
           var temp = json.count + '';
