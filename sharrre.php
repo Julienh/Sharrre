@@ -31,7 +31,7 @@
       
       $result = json_decode(str_replace(array('(', ')'), array('', ''), $content));
       $json['count'] = $result->count;
-      if( !isset($json['count']) ) $json['count'] = 0;
+      if( !isset($json['count']) || $json['count'] === '-' ) $json['count'] = 0;
     }
   }
   echo str_replace('\\/','/',json_encode($json));
