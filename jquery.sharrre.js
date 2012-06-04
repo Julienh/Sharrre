@@ -395,9 +395,11 @@
         }
       });
     }
-    else{
-      this.loadButtons();
+    else if(self.options.template !== ''){  //for personalized button (with template)
       this.options.render(this, this.options);
+    }
+    else{ // if you want to use official button like example 3 or 5
+      this.loadButtons();
     }
     
     //add hover event
@@ -443,7 +445,7 @@
       url = urlJson[name].replace('{url}', this.options.buttons[name].url);
     }
     //console.log('name : ' + name + ' - url : '+url); //debug
-    if(url != ''){  //urlCurl = '' if you don't want to used PHP script but used social button
+    if(url != '' && self.options.urlCurl !== ''){  //urlCurl = '' if you don't want to used PHP script but used social button
       $.getJSON(url, function(json){
         if(typeof json.count !== "undefined"){  //GooglePlus, Stumbleupon, Twitter and Digg
           var temp = json.count + '';
