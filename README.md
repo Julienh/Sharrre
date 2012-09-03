@@ -1,4 +1,4 @@
-jQuery Sharrre Plugin (1.3.1)
+jQuery Sharrre Plugin
 ===
 
 Make your sharing widget!

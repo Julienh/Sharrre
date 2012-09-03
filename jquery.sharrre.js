@@ -1,6 +1,6 @@
 /*
  *  Sharrre.com - Make your sharing widget!
- *  Version: beta 1.3.2 
+ *  Version: beta 1.3.3 
  *  Author: Julien Hany
  *  License: MIT http://en.wikipedia.org/wiki/MIT_License or GPLv2 http://en.wikipedia.org/wiki/GNU_General_Public_License
  */
@@ -315,7 +315,7 @@
   ================================================== */
   popup = {
     googlePlus: function(opt){
-      window.open("https://plusone.google.com/_/+1/confirm?hl="+opt.buttons.googlePlus.lang+"&url="+encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=900, height=500");
+      window.open("https://plus.google.com/share?hl="+opt.buttons.googlePlus.lang+"&url="+encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=900, height=500");
     },
     facebook: function(opt){
       window.open("http://www.facebook.com/sharer.php?u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+opt.text+"", "", "toolbar=0, status=0, width=900, height=500");
