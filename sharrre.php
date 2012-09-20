@@ -1,4 +1,5 @@
 <?php
+  header('content-type: application/json');
   //Sharrre by Julien Hany
   $json = array('url'=>'','count'=>0);
   $json['url'] = $_GET['url'];
@@ -17,21 +18,29 @@
       $newDom->formatOutput = true;
       
       $filtered = $domxpath->query("//div[@id='aggregateCount']");
-      $json['count'] = str_replace('>', '', $filtered->item(0)->nodeValue);
+      if (isset($filtered->item(0)->nodeValue))
+      {
+        $json['count'] = str_replace('>', '', $filtered->item(0)->nodeValue);
+      }
     }
     else if($type == 'stumbleupon'){
       $content = parse("http://www.stumbleupon.com/services/1.01/badge.getinfo?url=$url");
       
       $result = json_decode($content);
-      $json['count'] = $result->result->views;
-      if( !isset($json['count']) ) $json['count'] = 0;
+      if (isset($result->result->views))
+      {
+          $json['count'] = $result->result->views;
+      }
+
     }
     else if($type == 'pinterest'){
       $content = parse("http://api.pinterest.com/v1/urls/count.json?callback=&url=$url");
       
       $result = json_decode(str_replace(array('(', ')'), array('', ''), $content));
-      $json['count'] = $result->count;
-      if( !isset($json['count']) || $json['count'] === '-' ) $json['count'] = 0;
+      if (is_int($result->count))
+      {
+          $json['count'] = $result->count;
+      }
     }
   }
   echo str_replace('\\/','/',json_encode($json));
@@ -67,4 +76,3 @@
     }
     return $content;
   }
-?>
