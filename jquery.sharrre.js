@@ -111,7 +111,7 @@
     //stumbleupon: "http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}&format=jsonp&callback=?",
     stumbleupon: "",
     linkedin: "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?",
-    pinterest: ""
+    pinterest: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?"
   },
   /* Load share buttons asynchronously
   ================================================== */
@@ -365,7 +365,6 @@
     if(this.options.urlCurl !== ''){
       urlJson.googlePlus = this.options.urlCurl + '?url={url}&type=googlePlus'; // PHP script for GooglePlus...
       urlJson.stumbleupon = this.options.urlCurl + '?url={url}&type=stumbleupon'; // PHP script for Stumbleupon...
-      urlJson.pinterest = this.options.urlCurl + '?url={url}&type=pinterest'; // PHP script for Pinterest...
     }
     $(this.element).addClass(this.options.className); //add class
     

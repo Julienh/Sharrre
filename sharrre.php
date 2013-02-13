@@ -33,15 +33,6 @@
       }
 
     }
-    else if($type == 'pinterest'){
-      $content = parse("http://api.pinterest.com/v1/urls/count.json?callback=&url=$url");
-      
-      $result = json_decode(str_replace(array('(', ')'), array('', ''), $content));
-      if (is_int($result->count))
-      {
-          $json['count'] = $result->count;
-      }
-    }
   }
   echo str_replace('\\/','/',json_encode($json));
   
