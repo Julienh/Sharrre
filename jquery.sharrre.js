@@ -450,7 +450,7 @@
     //console.log('name : ' + name + ' - url : '+url); //debug
     if(url != '' && self.options.urlCurl !== ''){  //urlCurl = '' if you don't want to used PHP script but used social button
       $.getJSON(url, function(json){
-        if(typeof json.count !== "undefined"){  //GooglePlus, Stumbleupon, Twitter and Digg
+        if(typeof json.count !== "undefined"){  //GooglePlus, Stumbleupon, Twitter, Pinterest and Digg
           var temp = json.count + '';
           temp = temp.replace('\u00c2\u00a0', '');  //remove google plus special chars
           count += parseInt(temp, 10);
