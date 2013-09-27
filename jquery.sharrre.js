@@ -1,4 +1,4 @@
-/*
+/*!
  *  Sharrre.com - Make your sharing widget!
  *  Version: beta 1.3.5
  *  Author: Julien Hany
