@@ -8,19 +8,12 @@
   
   if(filter_var($_GET['url'], FILTER_VALIDATE_URL)){
     if($type == 'googlePlus'){  //source http://www.helmutgranda.com/2011/11/01/get-a-url-google-count-via-php/
-      $content = parse("https://plusone.google.com/u/0/_/+1/fastbutton?url=".$url."&count=true");
-      
-      $dom = new DOMDocument;
-      $dom->preserveWhiteSpace = false;
-      @$dom->loadHTML($content);
-      $domxpath = new DOMXPath($dom);
-      $newDom = new DOMDocument;
-      $newDom->formatOutput = true;
-      
-      $filtered = $domxpath->query("//div[@id='aggregateCount']");
-      if (isset($filtered->item(0)->nodeValue))
-      {
-        $json['count'] = str_replace('>', '', $filtered->item(0)->nodeValue);
+      $contents = parse('https://plusone.google.com/u/0/_/+1/fastbutton?url=' . $url . '&count=true');
+
+      preg_match( '/window\.__SSR = {c: ([\d]+)/', $contents, $matches );
+
+      if(isset($matches[0])){
+        $json['count'] = (int)str_replace('window.__SSR = {c: ', '', $matches[0]);
       }
     }
     else if($type == 'stumbleupon'){
