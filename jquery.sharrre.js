@@ -107,7 +107,7 @@
     // Old twitter count api endpoint.
     //twitter: "http://cdn.api.twitter.com/1/urls/count.json?url={url}&callback=?",
     // Now using http://opensharecount.com/
-    twitter: "http://opensharecount.com/count.json?url={url}&callback=?",
+    twitter: "http://opensharecount.com/count.json?url={url}",
     digg: "http://services.digg.com/2.0/story.getInfo?links={url}&type=javascript&callback=?",
     delicious: 'http://feeds.delicious.com/v2/json/urlinfo/data?url={url}&callback=?',
     //stumbleupon: "http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}&format=jsonp&callback=?",
