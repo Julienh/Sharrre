@@ -400,7 +400,7 @@
         }
       });
     }
-    else if(self.options.template !== ''){  //for personalized button (with template)
+    if(self.options.template !== ''){  //for personalized button (with template)
       this.options.render(this, this.options);
     }
     else{ // if you want to use official button like example 3 or 5
