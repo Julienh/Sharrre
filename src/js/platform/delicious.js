@@ -41,10 +41,10 @@ SharrrePlatform.register("delicious", function (options) {
         },
         tracking: function () {
         },
-        //@todo hang
         popup: function (opt) {
+            console.log(opt);
             window.open('http://www.delicious.com/save?v=5&noui&jump=close&url=' +
-                encodeURIComponent((opt.buttons.delicious.url !== '' ? opt.buttons.delicious.url : opt.url)) +
+                encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
                 '&title=' + opt.text, 'delicious', 'toolbar=no,width=550,height=550');
         }
     }
