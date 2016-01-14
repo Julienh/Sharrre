@@ -7,21 +7,11 @@
 
 (function ($, window, document, undefined) {
 
-    /* Defaults
-     ================================================== */
+    /* Defaults*/
     var pluginName = 'sharrre',
         defaults = {
             className: 'sharrre',
-            share: {
-                googlePlus: false,
-                facebook: false,
-                twitter: false,
-                digg: false,
-                delicious: false,
-                stumbleupon: false,
-                linkedin: false,
-                pinterest: false
-            },
+            share: {},
             shareTotal: 0,
             template: '',
             title: '',
@@ -49,27 +39,6 @@
                     size: 'medium',
                     lang: 'en-US',
                     annotation: ''
-                },
-                facebook: { //http://developers.facebook.com/docs/reference/plugins/like/
-                    url: '',  //if you need to personalize url button
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    action: 'like',
-                    layout: 'button_count',
-                    width: '',
-                    send: 'false',
-                    faces: 'false',
-                    colorscheme: '',
-                    font: '',
-                    lang: 'en_US'
-                },
-                twitter: {  //http://twitter.com/about/resources/tweetbutton
-                    url: '',  //if you need to personalize url button
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    count: 'horizontal',
-                    hashtags: '',
-                    via: '',
-                    related: '',
-                    lang: 'en'
                 },
                 digg: { //http://about.digg.com/downloads/button/smart
                     url: '',  //if you need to personalize url button
@@ -99,19 +68,10 @@
                 }
             }
         },
-    /* Json URL to get count number
-     ================================================== */
+    /* Json URL to get count number*/
         urlJson = {
             googlePlus: "",
 
-            //new FQL method by Sire
-            facebook: "https://graph.facebook.com/fql?q=SELECT%20url,%20normalized_url,%20share_count,%20like_count,%20comment_count,%20total_count,commentsbox_count,%20comments_fbid,%20click_count%20FROM%20link_stat%20WHERE%20url=%27{url}%27&callback=?",
-            //old method facebook: "http://graph.facebook.com/?id={url}&callback=?",
-            //facebook : "http://api.ak.facebook.com/restserver.php?v=1.0&method=links.getStats&urls={url}&format=json"
-            // Old twitter count api endpoint.
-            //twitter: "http://cdn.api.twitter.com/1/urls/count.json?url={url}&callback=?",
-            // Now using http://opensharecount.com/
-            twitter: "http://opensharecount.com/count.json?url={url}",
             digg: "http://services.digg.com/2.0/story.getInfo?links={url}&type=javascript&callback=?",
             delicious: 'http://feeds.delicious.com/v2/json/urlinfo/data?url={url}&callback=?',
             //stumbleupon: "http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}&format=jsonp&callback=?",
@@ -119,8 +79,7 @@
             linkedin: "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?",
             pinterest: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?"
         },
-    /* Load share buttons asynchronously
-     ================================================== */
+    /* Load share buttons asynchronously*/
         loadButton = {
             googlePlus: function (self) {
                 var sett = self.options.buttons.googlePlus;
@@ -146,44 +105,7 @@
                 }
             },
             facebook: function (self) {
-                var sett = self.options.buttons.facebook;
-                $(self.element).find('.buttons').append('<div class="button facebook"><div id="fb-root"></div><div class="fb-like" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-send="' + sett.send + '" data-layout="' + sett.layout + '" data-width="' + sett.width + '" data-show-faces="' + sett.faces + '" data-action="' + sett.action + '" data-colorscheme="' + sett.colorscheme + '" data-font="' + sett.font + '" data-via="' + sett.via + '"></div></div>');
-                var loading = 0;
-                if (typeof FB === 'undefined' && loading == 0) {
-                    loading = 1;
-                    (function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) {
-                            return;
-                        }
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = '//connect.facebook.net/' + sett.lang + '/all.js#xfbml=1';
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-                }
-                else {
-                    FB.XFBML.parse();
-                }
-            },
-            twitter: function (self) {
-                var sett = self.options.buttons.twitter;
-                $(self.element).find('.buttons').append('<div class="button twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-count="' + sett.count + '" data-text="' + self.options.text + '" data-via="' + sett.via + '" data-hashtags="' + sett.hashtags + '" data-related="' + sett.related + '" data-lang="' + sett.lang + '">Tweet</a></div>');
-                var loading = 0;
-                if (typeof twttr === 'undefined' && loading == 0) {
-                    loading = 1;
-                    (function () {
-                        var twitterScriptTag = document.createElement('script');
-                        twitterScriptTag.type = 'text/javascript';
-                        twitterScriptTag.async = true;
-                        twitterScriptTag.src = '//platform.twitter.com/widgets.js';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(twitterScriptTag, s);
-                    })();
-                }
-                else {
-                    $.ajax({ url: '//platform.twitter.com/widgets.js', dataType: 'script', cache: true}); //http://stackoverflow.com/q/6536108
-                }
+
             },
             digg: function (self) {
                 var sett = self.options.buttons.digg;
@@ -235,7 +157,7 @@
                         var li = document.createElement('script');
                         li.type = 'text/javascript';
                         li.async = true;
-                        li.src = '//platform.stumbleupon.com/1/widgets.js';
+                        li.src = 'https://platform.stumbleupon.com/1/widgets.js';
                         var s = document.getElementsByTagName('script')[0];
                         s.parentNode.insertBefore(li, s);
                     })();
@@ -260,7 +182,7 @@
                         var li = document.createElement('script');
                         li.type = 'text/javascript';
                         li.async = true;
-                        li.src = '//platform.linkedin.com/in.js';
+                        li.src = 'https://platform.linkedin.com/in.js';
                         var s = document.getElementsByTagName('script')[0];
                         s.parentNode.insertBefore(li, s);
                     })();
@@ -277,48 +199,16 @@
                     var li = document.createElement('script');
                     li.type = 'text/javascript';
                     li.async = true;
-                    li.src = '//assets.pinterest.com/js/pinit.js';
+                    li.src = 'https://assets.pinterest.com/js/pinit.js';
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(li, s);
                 })();
             }
         },
-    /* Tracking for Google Analytics
-     ================================================== */
+
+    /* Tracking for Google Analytics*/
         tracking = {
             googlePlus: function () {
-            },
-            facebook: function () {
-                //console.log('facebook');
-                fb = window.setInterval(function () {
-                    if (typeof FB !== 'undefined') {
-                        FB.Event.subscribe('edge.create', function (targetUrl) {
-                            _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
-                        });
-                        FB.Event.subscribe('edge.remove', function (targetUrl) {
-                            _gaq.push(['_trackSocial', 'facebook', 'unlike', targetUrl]);
-                        });
-                        FB.Event.subscribe('message.send', function (targetUrl) {
-                            _gaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
-                        });
-                        //console.log('ok');
-                        clearInterval(fb);
-                    }
-                }, 1000);
-            },
-            twitter: function () {
-                //console.log('twitter');
-                tw = window.setInterval(function () {
-                    if (typeof twttr !== 'undefined') {
-                        twttr.events.bind('tweet', function (event) {
-                            if (event) {
-                                _gaq.push(['_trackSocial', 'twitter', 'tweet']);
-                            }
-                        });
-                        //console.log('ok');
-                        clearInterval(tw);
-                    }
-                }, 1000);
             },
             digg: function () {
                 //if somenone find a solution, mail me !
@@ -339,17 +229,12 @@
                 //if somenone find a solution, mail me !
             }
         },
-    /* Popup for each social network
-     ================================================== */
+    /* Popup for each social network*/
         popup = {
             googlePlus: function (opt) {
                 window.open("https://plus.google.com/share?hl=" + opt.buttons.googlePlus.lang + "&url=" + encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=900, height=500");
             },
             facebook: function (opt) {
-                window.open("http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url)) + "&t=" + opt.text + "", "", "toolbar=0, status=0, width=900, height=500");
-            },
-            twitter: function (opt) {
-                window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(opt.text) + "&url=" + encodeURIComponent((opt.buttons.twitter.url !== '' ? opt.buttons.twitter.url : opt.url)) + (opt.buttons.twitter.via !== '' ? '&via=' + opt.buttons.twitter.via : ''), "", "toolbar=0, status=0, width=650, height=360");
             },
             digg: function (opt) {
                 window.open("http://digg.com/tools/diggthis/submit?url=" + encodeURIComponent((opt.buttons.digg.url !== '' ? opt.buttons.digg.url : opt.url)) + "&title=" + opt.text + "&related=true&style=true", "", "toolbar=0, status=0, width=650, height=360");
@@ -368,8 +253,7 @@
             }
         };
 
-    /* Plugin constructor
-     ================================================== */
+    /* Plugin constructor*/
     function Plugin(element, options) {
         this.element = element;
 
@@ -379,6 +263,7 @@
         this._defaults = defaults;
         this._name = pluginName;
 
+        this.platforms = {};
         this.init();
     };
 
@@ -386,6 +271,14 @@
      ================================================== */
     Plugin.prototype.init = function () {
         var self = this;
+
+
+        $.each(self.options.share, function (name, val) {
+            if (val === true) {
+                self.platforms[name] = SharrrePlatform.get(name, self.options.buttons[name]);
+            }
+        });
+
         if (this.options.urlCurl !== '') {
             urlJson.googlePlus = this.options.urlCurl + '?url={url}&type=googlePlus'; // PHP script for GooglePlus...
             urlJson.stumbleupon = this.options.urlCurl + '?url={url}&type=stumbleupon'; // PHP script for Stumbleupon...
@@ -453,10 +346,11 @@
         var self = this;
         $(this.element).append('<div class="buttons"></div>');
         $.each(self.options.share, function (name, val) {
+
             if (val == true) {
-                loadButton[name](self);
+                self.platforms[name].load(self);
                 if (self.options.enableTracking === true) { //add tracking
-                    tracking[name]();
+                    self.platforms[name].tracking();
                 }
             }
         });
@@ -467,11 +361,19 @@
     Plugin.prototype.getSocialJson = function (name) {
         var self = this,
             count = 0,
-            url = urlJson[name].replace('{url}', encodeURIComponent(this.options.url));
-        if (this.options.buttons[name].urlCount === true && this.options.buttons[name].url !== '') {
-            url = urlJson[name].replace('{url}', this.options.buttons[name].url);
+            settings = self.platforms[name].settings,
+            buttonUrl = self.platforms[name].url(this.options.urlCurl),
+            replaceUrl = encodeURIComponent(this.options.url);
+        if (settings.url.length) {
+            buttonUrl = settings.url;
         }
-        //console.log('name : ' + name + ' - url : '+url); //debug
+        if (settings.urlCount === true && buttonUrl !== '') {
+            replaceUrl = buttonUrl;
+        }
+        if (settings.count === false) {
+            buttonUrl = '';
+        }
+        url = buttonUrl.replace('{url}', replaceUrl);
         if (url != '' && self.options.urlCurl !== '') {  //urlCurl = '' if you don't want to used PHP script but used social button
             $.getJSON(url, function (json) {
                 if (typeof json.count !== "undefined") {  //GooglePlus, Stumbleupon, Twitter, Pinterest and Digg
@@ -492,7 +394,6 @@
                 self.options.total += count;
                 self.renderer();
                 self.rendererPerso();
-                //console.log(json); //debug
             })
                 .error(function () {
                     self.options.count[name] = 0;
@@ -555,7 +456,7 @@
     /* Methode for open popup
      ================================================== */
     Plugin.prototype.openPopup = function (site) {
-        popup[site](this.options);  //open
+        self.platforms[site].popup(this.options);  //open
         if (this.options.enableTracking === true) { //tracking!
             var tracking = {
                 googlePlus: {site: 'Google', action: '+1'},

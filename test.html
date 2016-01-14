@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sharrre.com</title>
+    <meta name="description" content="Sharrre"/>
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="src/js/platform/platform.js"></script>
+    <script src="src/js/platform/twitter.js"></script>
+    <script src="src/js/platform/googlePlus.js"></script>
+    <script src="src/js/platform/facebook.js"></script>
+    <script src="src/js/jquery.sharrre.js"></script>
+    <link rel="stylesheet" href="dist/style.css">
+</head>
+<body>
+<script>
+    cts = SharrrePlatform.get('googlePlus');
+    $(function () {
+        $('#demo2').sharrre({
+            share: {
+                // googlePlus: true,
+                facebook: true,
+                twitter: true
+            },
+            buttons: {
+                facebook: {layout: 'box_count'},
+                twitter: {count: 'vertical'},
+                delicious: {size: 'tall'}
+            },
+            url: 'http://sharrre.com'
+            // enableHover: false
+        });
+    });
+</script>
+</body>
+
+
+<div id="demo2"></div>

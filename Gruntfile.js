@@ -22,6 +22,8 @@ module.exports = function (grunt) {
             my_target: {
                 files: {
                     "dist/jquery.sharrre.min.js": [
+                        "src/js/platform/platform.js",
+                        "src/js/platform/*.js",
                         "src/js/**/*.js"
                     ]
                 }
