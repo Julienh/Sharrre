@@ -14,7 +14,7 @@ SharrrePlatform.register("twitter", function (options) {
         settings: defaultSettings,
         trackingAction: {site: 'twitter', action: 'tweet'},
         url: function (test) {
-            return "http://opensharecount.com/count.json?url={url}";
+            return "https://opensharecount.com/count.json?url={url}";
         },
         load: function (self) {
             var sett = this.settings;

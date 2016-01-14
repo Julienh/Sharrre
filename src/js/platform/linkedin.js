@@ -10,7 +10,7 @@ SharrrePlatform.register("linkedin", function (options) {
     return {
         settings: defaultSettings,
         url: function (test) {
-            return "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
+            return "https://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
         },
         trackingAction: {site: 'linkedin', action: 'share'},
         load: function (self) {

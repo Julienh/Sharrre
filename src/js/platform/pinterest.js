@@ -9,6 +9,9 @@ SharrrePlatform.register("pinterest", function (options) {
     defaultSettings = $.extend(true, {}, defaultSettings, options);
     return {
         settings: defaultSettings,
+        url: function (test) {
+            return "https://api.pinterest.com/v1/urls/count.json?url={url}&callback=?";
+        },
         trackingAction: {site: 'pinterest', action: 'pin'},
         load: function (self) {
             var sett = this.settings;
