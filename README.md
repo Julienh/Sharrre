@@ -51,7 +51,8 @@ $(document).ready(function(){
 See example on [official website](http://sharrre.com/#demos)
 
 # Dependencies
-jQuery 1.7
+* jQuery 1.7
+* Registration at [OpenShareCount](http://opensharecount.com) is mandatory if you want to get Twitter share counts via OpenShareCount (now that Twitter is no longer providing them)
 
 # Author
 - [Julien Hany](http://hany.fr)
