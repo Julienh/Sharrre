@@ -15,13 +15,13 @@
     <script src="src/js/platform/linkedin.js"></script>
     <script src="src/js/platform/pinterest.js"></script>
     <script src="src/js/jquery.sharrre.js"></script>
-    <link rel="stylesheet" href="dist/style.css">
+    <link rel="stylesheet" href="dist/test.css">
 </head>
 <body>
 <script>
     cts = SharrrePlatform.get('googlePlus');
     $(function () {
-        $('#demo2').sharrre({
+        $('#demo-all').sharrre({
             share: {
                 googlePlus: true,
                 facebook: true,
@@ -32,9 +32,9 @@
                 pinterest: true
             },
             buttons: {
-                facebook: {layout: 'box_count'},
-                twitter: {count: 'vertical'},
-                delicious: {size: 'tall'},
+                facebook: {},
+                twitter: {},
+                delicious: {},
                 linkedin: {},
                 pinterest: {}
             },
@@ -44,4 +44,4 @@
 </script>
 </body>
 
-<div id="demo2"></div>
+<div id="demo-all"></div>

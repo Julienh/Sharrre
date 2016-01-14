@@ -1,0 +1,45 @@
+#demo-all .share {
+  width: 100%;
+  display: inline-block; }
+
+#demo-all .box {
+  float: left;
+  width: 50px; }
+
+#demo-all .count {
+  color: #444444;
+  display: block;
+  font-size: 17px;
+  line-height: 34px;
+  height: 34px;
+  padding: 4px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 50px;
+  background-color: #eee; }
+
+#demo-all .share {
+  color: #ddd;
+  display: block;
+  font-size: 11px;
+  height: 16px;
+  line-height: 16px;
+  margin-top: 3px;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  width: 50px;
+  background-color: #9CCE39; }
+
+#demo-all .buttons {
+  width: 500px;
+  background: #ddd;
+  float: left;
+  padding: 20px; }
+
+#demo-all .button {
+  float: left;
+  margin: 0 10px; }
+
+/*# sourceMappingURL=test.css.map */

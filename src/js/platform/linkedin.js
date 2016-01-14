@@ -12,7 +12,7 @@ SharrrePlatform.register("linkedin", function (options) {
         url: function (test) {
             return "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
         },
-        trackingAction: {site: 'digg', action: 'add'},
+        trackingAction: {site: 'linkedin', action: 'share'},
         load: function (self) {
             var sett = this.settings;
             $(self.element).find('.buttons').append('<div class="button linkedin"><script type="IN/share" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-counter="' + sett.counter + '"></script></div>');
