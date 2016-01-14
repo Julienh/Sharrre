@@ -1,21 +1,25 @@
-SharrrePlatform.register("googlePlus", function () {
+SharrrePlatform.register("googlePlus", function (options) {
     defaultSettings = {  //http://www.google.com/webmasters/+1/button/
         url: '',  //if you need to personnalize button url
         urlCount: false,  //if you want to use personnalize button url on global counter
         size: 'medium',
         lang: 'en-US',
-        annotation: ''
+        annotation: '',
+        count: true
     };
 
+    defaultSettings = $.extend(true, {}, defaultSettings, options);
     return {
         settings: defaultSettings,
-        url: "",
+        url: function (url) {
+            return url + '?url={url}&type=googlePlus';
+        },
         load: function (self) {
-            var sett = self.options.buttons.googlePlus;
+            var sett = this.settings;
             //$(self.element).find('.buttons').append('<div class="button googleplus"><g:plusone size="'+self.options.buttons.googlePlus.size+'" href="'+self.options.url+'"></g:plusone></div>');
             $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' + sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-annotation="' + sett.annotation + '"></div></div>');
             window.___gcfg = {
-                lang: self.options.buttons.googlePlus.lang
+                lang: sett.lang
             };
             var loading = 0;
             if (typeof gapi === 'undefined' && loading == 0) {
@@ -24,7 +28,7 @@ SharrrePlatform.register("googlePlus", function () {
                     var po = document.createElement('script');
                     po.type = 'text/javascript';
                     po.async = true;
-                    po.src = '//apis.google.com/js/plusone.js';
+                    po.src = 'http://apis.google.com/js/plusone.js';
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(po, s);
                 })();

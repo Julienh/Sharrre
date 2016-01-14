@@ -31,238 +31,16 @@
             click: function () {
             }, //personalize click event with this callback function
             render: function () {
-            }, //personalize render event with this callback function
-            buttons: {  //settings for buttons
-                googlePlus: {  //http://www.google.com/webmasters/+1/button/
-                    url: '',  //if you need to personnalize button url
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    size: 'medium',
-                    lang: 'en-US',
-                    annotation: ''
-                },
-                digg: { //http://about.digg.com/downloads/button/smart
-                    url: '',  //if you need to personalize url button
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    type: 'DiggCompact'
-                },
-                delicious: {
-                    url: '',  //if you need to personalize url button
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    size: 'medium' //medium or tall
-                },
-                stumbleupon: {  //http://www.stumbleupon.com/badges/
-                    url: '',  //if you need to personalize url button
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    layout: '1'
-                },
-                linkedin: {  //http://developer.linkedin.com/plugins/share-button
-                    url: '',  //if you need to personalize url button
-                    urlCount: false,  //if you want to use personnalize button url on global counter
-                    counter: ''
-                },
-                pinterest: { //http://pinterest.com/about/goodies/
-                    url: '',  //if you need to personalize url button
-                    media: '',
-                    description: '',
-                    layout: 'horizontal'
-                }
-            }
-        },
-    /* Json URL to get count number*/
-        urlJson = {
-            googlePlus: "",
-
-            digg: "http://services.digg.com/2.0/story.getInfo?links={url}&type=javascript&callback=?",
-            delicious: 'http://feeds.delicious.com/v2/json/urlinfo/data?url={url}&callback=?',
-            //stumbleupon: "http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}&format=jsonp&callback=?",
-            stumbleupon: "",
-            linkedin: "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?",
-            pinterest: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?"
-        },
-    /* Load share buttons asynchronously*/
-        loadButton = {
-            googlePlus: function (self) {
-                var sett = self.options.buttons.googlePlus;
-                //$(self.element).find('.buttons').append('<div class="button googleplus"><g:plusone size="'+self.options.buttons.googlePlus.size+'" href="'+self.options.url+'"></g:plusone></div>');
-                $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' + sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-annotation="' + sett.annotation + '"></div></div>');
-                window.___gcfg = {
-                    lang: self.options.buttons.googlePlus.lang
-                };
-                var loading = 0;
-                if (typeof gapi === 'undefined' && loading == 0) {
-                    loading = 1;
-                    (function () {
-                        var po = document.createElement('script');
-                        po.type = 'text/javascript';
-                        po.async = true;
-                        po.src = '//apis.google.com/js/plusone.js';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(po, s);
-                    })();
-                }
-                else {
-                    gapi.plusone.go();
-                }
-            },
-            facebook: function (self) {
-
-            },
-            digg: function (self) {
-                var sett = self.options.buttons.digg;
-                $(self.element).find('.buttons').append('<div class="button digg"><a class="DiggThisButton ' + sett.type + '" rel="nofollow external" href="http://digg.com/submit?url=' + encodeURIComponent((sett.url !== '' ? sett.url : self.options.url)) + '"></a></div>');
-                var loading = 0;
-                if (typeof __DBW === 'undefined' && loading == 0) {
-                    loading = 1;
-                    (function () {
-                        var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-                        s.type = 'text/javascript';
-                        s.async = true;
-                        s.src = '//widgets.digg.com/buttons.js';
-                        s1.parentNode.insertBefore(s, s1);
-                    })();
-                }
-            },
-            delicious: function (self) {
-                if (self.options.buttons.delicious.size == 'tall') {//tall
-                    var css = 'width:50px;',
-                        cssCount = 'height:35px;width:50px;font-size:15px;line-height:35px;',
-                        cssShare = 'height:18px;line-height:18px;margin-top:3px;';
-                }
-                else {//medium
-                    var css = 'width:93px;',
-                        cssCount = 'float:right;padding:0 3px;height:20px;width:26px;line-height:20px;',
-                        cssShare = 'float:left;height:20px;line-height:20px;';
-                }
-                var count = self.shorterTotal(self.options.count.delicious);
-                if (typeof count === "undefined") {
-                    count = 0;
-                }
-                $(self.element).find('.buttons').append(
-                    '<div class="button delicious"><div style="' + css + 'font:12px Arial,Helvetica,sans-serif;cursor:pointer;color:#666666;display:inline-block;float:none;height:20px;line-height:normal;margin:0;padding:0;text-indent:0;vertical-align:baseline;">' +
-                        '<div style="' + cssCount + 'background-color:#fff;margin-bottom:5px;overflow:hidden;text-align:center;border:1px solid #ccc;border-radius:3px;">' + count + '</div>' +
-                        '<div style="' + cssShare + 'display:block;padding:0;text-align:center;text-decoration:none;width:50px;background-color:#7EACEE;border:1px solid #40679C;border-radius:3px;color:#fff;">' +
-                        '<img src="http://www.delicious.com/static/img/delicious.small.gif" height="10" width="10" alt="Delicious" /> Add</div></div></div>');
-
-                $(self.element).find('.delicious').on('click', function () {
-                    self.openPopup('delicious');
-                });
-            },
-            stumbleupon: function (self) {
-                var sett = self.options.buttons.stumbleupon;
-                $(self.element).find('.buttons').append('<div class="button stumbleupon"><su:badge layout="' + sett.layout + '" location="' + (sett.url !== '' ? sett.url : self.options.url) + '"></su:badge></div>');
-                var loading = 0;
-                if (typeof STMBLPN === 'undefined' && loading == 0) {
-                    loading = 1;
-                    (function () {
-                        var li = document.createElement('script');
-                        li.type = 'text/javascript';
-                        li.async = true;
-                        li.src = 'https://platform.stumbleupon.com/1/widgets.js';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(li, s);
-                    })();
-                    s = window.setTimeout(function () {
-                        if (typeof STMBLPN !== 'undefined') {
-                            STMBLPN.processWidgets();
-                            clearInterval(s);
-                        }
-                    }, 500);
-                }
-                else {
-                    STMBLPN.processWidgets();
-                }
-            },
-            linkedin: function (self) {
-                var sett = self.options.buttons.linkedin;
-                $(self.element).find('.buttons').append('<div class="button linkedin"><script type="in/share" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-counter="' + sett.counter + '"></script></div>');
-                var loading = 0;
-                if (typeof window.IN === 'undefined' && loading == 0) {
-                    loading = 1;
-                    (function () {
-                        var li = document.createElement('script');
-                        li.type = 'text/javascript';
-                        li.async = true;
-                        li.src = 'https://platform.linkedin.com/in.js';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(li, s);
-                    })();
-                }
-                else {
-                    window.IN.init();
-                }
-            },
-            pinterest: function (self) {
-                var sett = self.options.buttons.pinterest;
-                $(self.element).find('.buttons').append('<div class="button pinterest"><a href="http://pinterest.com/pin/create/button/?url=' + (sett.url !== '' ? sett.url : self.options.url) + '&media=' + sett.media + '&description=' + sett.description + '" class="pin-it-button" count-layout="' + sett.layout + '">Pin It</a></div>');
-
-                (function () {
-                    var li = document.createElement('script');
-                    li.type = 'text/javascript';
-                    li.async = true;
-                    li.src = 'https://assets.pinterest.com/js/pinit.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(li, s);
-                })();
-            }
-        },
-
-    /* Tracking for Google Analytics*/
-        tracking = {
-            googlePlus: function () {
-            },
-            digg: function () {
-                //if somenone find a solution, mail me !
-                /*$(this.element).find('.digg').on('click', function(){
-                 _gaq.push(['_trackSocial', 'digg', 'add']);
-                 });*/
-            },
-            delicious: function () {
-            },
-            stumbleupon: function () {
-            },
-            linkedin: function () {
-                function LinkedInShare() {
-                    _gaq.push(['_trackSocial', 'linkedin', 'share']);
-                }
-            },
-            pinterest: function () {
-                //if somenone find a solution, mail me !
-            }
-        },
-    /* Popup for each social network*/
-        popup = {
-            googlePlus: function (opt) {
-                window.open("https://plus.google.com/share?hl=" + opt.buttons.googlePlus.lang + "&url=" + encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=900, height=500");
-            },
-            facebook: function (opt) {
-            },
-            digg: function (opt) {
-                window.open("http://digg.com/tools/diggthis/submit?url=" + encodeURIComponent((opt.buttons.digg.url !== '' ? opt.buttons.digg.url : opt.url)) + "&title=" + opt.text + "&related=true&style=true", "", "toolbar=0, status=0, width=650, height=360");
-            },
-            delicious: function (opt) {
-                window.open('http://www.delicious.com/save?v=5&noui&jump=close&url=' + encodeURIComponent((opt.buttons.delicious.url !== '' ? opt.buttons.delicious.url : opt.url)) + '&title=' + opt.text, 'delicious', 'toolbar=no,width=550,height=550');
-            },
-            stumbleupon: function (opt) {
-                window.open('http://www.stumbleupon.com/badge/?url=' + encodeURIComponent((opt.buttons.stumbleupon.url !== '' ? opt.buttons.stumbleupon.url : opt.url)), 'stumbleupon', 'toolbar=no,width=550,height=550');
-            },
-            linkedin: function (opt) {
-                window.open('https://www.linkedin.com/cws/share?url=' + encodeURIComponent((opt.buttons.linkedin.url !== '' ? opt.buttons.linkedin.url : opt.url)) + '&token=&isFramed=true', 'linkedin', 'toolbar=no,width=550,height=550');
-            },
-            pinterest: function (opt) {
-                window.open('http://pinterest.com/pin/create/button/?url=' + encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url)) + '&media=' + encodeURIComponent(opt.buttons.pinterest.media) + '&description=' + opt.buttons.pinterest.description, 'pinterest', 'toolbar=no,width=700,height=300');
             }
         };
 
     /* Plugin constructor*/
     function Plugin(element, options) {
         this.element = element;
-
         this.options = $.extend(true, {}, defaults, options);
         this.options.share = options.share; //simple solution to allow order of buttons
-
         this._defaults = defaults;
         this._name = pluginName;
-
         this.platforms = {};
         this.init();
     };
@@ -272,17 +50,13 @@
     Plugin.prototype.init = function () {
         var self = this;
 
-
+        // Load enabled platforms
         $.each(self.options.share, function (name, val) {
             if (val === true) {
                 self.platforms[name] = SharrrePlatform.get(name, self.options.buttons[name]);
             }
         });
 
-        if (this.options.urlCurl !== '') {
-            urlJson.googlePlus = this.options.urlCurl + '?url={url}&type=googlePlus'; // PHP script for GooglePlus...
-            urlJson.stumbleupon = this.options.urlCurl + '?url={url}&type=stumbleupon'; // PHP script for Stumbleupon...
-        }
         $(this.element).addClass(this.options.className); //add class
 
         //HTML5 Custom data
@@ -456,8 +230,11 @@
     /* Methode for open popup
      ================================================== */
     Plugin.prototype.openPopup = function (site) {
-        self.platforms[site].popup(this.options);  //open
+        this.platforms[site].popup(this.options);  //open
         if (this.options.enableTracking === true) { //tracking!
+            /**
+             * @todo put in platform
+             */
             var tracking = {
                 googlePlus: {site: 'Google', action: '+1'},
                 facebook: {site: 'facebook', action: 'like'},

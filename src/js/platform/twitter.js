@@ -5,11 +5,11 @@ SharrrePlatform.register("twitter", function (options) {
         count: 'horizontal',
         hashtags: '',
         via: '',
-        count: false,
         related: '',
         lang: 'en'
     };
 
+    defaultSettings = $.extend(true, {}, defaultSettings, options);
     return {
         settings: defaultSettings,
         url: function (test) {
@@ -40,7 +40,6 @@ SharrrePlatform.register("twitter", function (options) {
             }
         },
         tracking: function () {
-            //console.log('twitter');
             tw = window.setInterval(function () {
                 if (typeof twttr !== 'undefined') {
                     twttr.events.bind('tweet', function (event) {

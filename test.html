@@ -9,6 +9,11 @@
     <script src="src/js/platform/twitter.js"></script>
     <script src="src/js/platform/googlePlus.js"></script>
     <script src="src/js/platform/facebook.js"></script>
+    <script src="src/js/platform/digg.js"></script>
+    <script src="src/js/platform/delicious.js"></script>
+    <script src="src/js/platform/stumbleupon.js"></script>
+    <script src="src/js/platform/linkedin.js"></script>
+    <script src="src/js/platform/pinterest.js"></script>
     <script src="src/js/jquery.sharrre.js"></script>
     <link rel="stylesheet" href="dist/style.css">
 </head>
@@ -18,14 +23,20 @@
     $(function () {
         $('#demo2').sharrre({
             share: {
-                // googlePlus: true,
+                googlePlus: true,
                 facebook: true,
-                twitter: true
+                twitter: true,
+                delicious: true,
+                stumbleupon: true,
+                linkedin: true,
+                pinterest: true
             },
             buttons: {
                 facebook: {layout: 'box_count'},
                 twitter: {count: 'vertical'},
-                delicious: {size: 'tall'}
+                delicious: {size: 'tall'},
+                linkedin: {},
+                pinterest: {}
             },
             url: 'http://sharrre.com'
             // enableHover: false
@@ -34,5 +45,5 @@
 </script>
 </body>
 
-
+<a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
 <div id="demo2"></div>
