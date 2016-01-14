@@ -1,12 +1,41 @@
-#demo-all .share {
+h1 a {
+  font-size: .85rem;
+  color: red;
+  display: block;
+  cursor: pointer; }
+
+.source {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  font-size: .90rem; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+.share {
   width: 100%;
   display: inline-block; }
 
-#demo-all .box {
-  float: left;
+.box {
   width: 50px; }
 
-#demo-all .count {
+.count {
   color: #444444;
   display: block;
   font-size: 17px;
@@ -17,9 +46,10 @@
   text-align: center;
   text-decoration: none;
   width: 50px;
-  background-color: #eee; }
+  background-color: #eee;
+  float: left; }
 
-#demo-all .share {
+.share {
   color: #ddd;
   display: block;
   font-size: 11px;
@@ -32,13 +62,13 @@
   width: 50px;
   background-color: #9CCE39; }
 
-#demo-all .buttons {
+.buttons {
   width: 500px;
   background: #ddd;
   float: left;
   padding: 20px; }
 
-#demo-all .button {
+.button {
   float: left;
   margin: 0 10px; }
 

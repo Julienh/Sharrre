@@ -18,8 +18,28 @@
     <link rel="stylesheet" href="dist/test.css">
 </head>
 <body>
+
 <script>
-    cts = SharrrePlatform.get('googlePlus');
+    $(function () {
+        $('h1').each(function () {
+            $this = $(this);
+            $this.append("<a class='show-source'>Show source</a>");
+        });
+
+        $(document).on('click', '.show-source', function () {
+            $this = $(this);
+            console.log('clickos');
+            $script = $this.parent().prev("script");
+            console.log($script.length);
+            $this.parent().append("<div class='source'>" + $script.html() + "</div>");
+            $this.remove();
+            console.log($script.html());
+        });
+    });
+
+</script>
+
+<script>
     $(function () {
         $('#demo-all').sharrre({
             share: {
@@ -42,6 +62,37 @@
         });
     });
 </script>
-</body>
+<h1>All standard buttons</h1>
 
-<div id="demo-all"></div>
+<div id="demo-all" class="clearfix"></div>
+
+
+<script>
+    $(function () {
+        $('#demo-no-count').sharrre({
+            share: {
+                googlePlus: true,
+                facebook: true,
+                twitter: true,
+                delicious: true,
+                stumbleupon: true,
+                linkedin: true,
+                pinterest: true
+            },
+            buttons: {
+                facebook: {},
+                twitter: {},
+                delicious: {},
+                linkedin: {},
+                pinterest: {}
+            },
+            url: 'http://sharrre.com',
+            enableCounter: false
+        });
+    });
+</script>
+<h1>All standard buttons (without counter)</h1>
+
+<div id="demo-no-count" class="clearfix"></div>
+
+</body>
