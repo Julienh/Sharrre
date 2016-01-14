@@ -10,6 +10,9 @@ h1 a {
   white-space: pre;
   font-size: .90rem; }
 
+body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
 .clearfix:after {
   visibility: hidden;
   display: block;
