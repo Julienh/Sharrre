@@ -18,7 +18,6 @@ SharrrePlatform.register("linkedin", function (options) {
             $(self.element).find('.buttons').append('<div class="button linkedin"><script type="IN/share" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-counter="' + sett.counter + '"></script></div>');
             var loading = 0;
             if (typeof window.IN === 'undefined' && loading == 0) {
-                console.log('loading');
                 loading = 1;
                 (function () {
                     var li = document.createElement('script');
@@ -29,7 +28,7 @@ SharrrePlatform.register("linkedin", function (options) {
                     s.parentNode.insertBefore(li, s);
                 })();
             }
-            else {
+            else if (typeof window.IN !== 'undefined' && window.IN.parse) {
                 IN.parse(document);
             }
         },
