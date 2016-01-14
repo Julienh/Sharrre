@@ -13,12 +13,12 @@ SharrrePlatform.register("linkedin", function (options) {
             return "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
         },
         trackingAction: {site: 'digg', action: 'add'},
-        //@todo Doesn't load properly when hovering
         load: function (self) {
             var sett = this.settings;
-            $(self.element).find('.buttons').append('<div class="button linkedin"><script type="in/share" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-counter="' + sett.counter + '"></script></div>');
+            $(self.element).find('.buttons').append('<div class="button linkedin"><script type="IN/share" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-counter="' + sett.counter + '"></script></div>');
             var loading = 0;
             if (typeof window.IN === 'undefined' && loading == 0) {
+                console.log('loading');
                 loading = 1;
                 (function () {
                     var li = document.createElement('script');
@@ -30,7 +30,7 @@ SharrrePlatform.register("linkedin", function (options) {
                 })();
             }
             else {
-                window.IN.init();
+                IN.parse(document);
             }
         },
         tracking: function () {

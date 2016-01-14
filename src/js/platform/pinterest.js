@@ -10,7 +10,6 @@ SharrrePlatform.register("pinterest", function (options) {
     return {
         settings: defaultSettings,
         trackingAction: {site: 'pinterest', action: 'pin'},
-        //@todo doesn't load
         load: function (self) {
             var sett = this.settings;
             $(self.element).find('.buttons').append('<div class="button pinterest"><a href="https://www.pinterest.com/pin/create/button/?url=' + (sett.url !== '' ? sett.url : self.options.url) + '&media=' + sett.media + '&description=' + sett.description + '" data-pin-do="buttonBookmark" count-layout="' + sett.layout + '">Pin It</a></div>');
@@ -27,6 +26,7 @@ SharrrePlatform.register("pinterest", function (options) {
         tracking: function () {
         },
         popup: function (opt) {
+            console.log('pp');
             window.open('http://pinterest.com/pin/create/button/?url=' +
                 encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url)) +
                 '&media=' + encodeURIComponent(opt.buttons.pinterest.media) +

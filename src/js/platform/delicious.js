@@ -41,6 +41,7 @@ SharrrePlatform.register("delicious", function (options) {
         },
         tracking: function () {
         },
+        //@todo hang
         popup: function (opt) {
             window.open('http://www.delicious.com/save?v=5&noui&jump=close&url=' +
                 encodeURIComponent((opt.buttons.delicious.url !== '' ? opt.buttons.delicious.url : opt.url)) +

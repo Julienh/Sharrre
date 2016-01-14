@@ -14,7 +14,6 @@ SharrrePlatform.register("stumbleupon", function (options) {
                 return url + '?url={url}&type=stumbleupon';
             },
             trackingAction: {site: 'stumbleupon', action: 'add'},
-            // @todo Doesn't work apparently
             load: function (self) {
                 var sett = this.settings;
                 $(self.element).find('.buttons').append('<div class="button stumbleupon"><su:badge layout="' + sett.layout + '" location="' + (sett.url !== '' ? sett.url : self.options.url) + '"></su:badge></div>');
@@ -37,12 +36,12 @@ SharrrePlatform.register("stumbleupon", function (options) {
                     }, 500);
                 }
                 else {
+                    STMBLPN.wasProcessLoaded = false;
                     STMBLPN.processWidgets();
                 }
             },
             tracking: function () {
             },
-            //@todo hang
             popup: function (opt) {
                 window.open('http://www.stumbleupon.com/badge/?url=' +
                     encodeURIComponent((opt.buttons.stumbleupon.url !== '' ? opt.buttons.stumbleupon.url : opt.url)),
