@@ -16,6 +16,7 @@ SharrrePlatform.register("digg", function (options) {
         url: function (url) {
             return "http://services.digg.com/2.0/story.getInfo?links={url}&type=javascript&callback=?";
         },
+        trackingAction: {site: 'digg', action: 'add'},
         load: function (self) {
             var sett = this.settings;
             $(self.element).find('.buttons').append('<div class="button digg"><a class="DiggThisButton ' + sett.type + '" rel="nofollow external" href="http://digg.com/submit?url=' + encodeURIComponent((sett.url !== '' ? sett.url : self.options.url)) + '"></a></div>');

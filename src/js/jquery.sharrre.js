@@ -232,20 +232,8 @@
     Plugin.prototype.openPopup = function (site) {
         this.platforms[site].popup(this.options);  //open
         if (this.options.enableTracking === true) { //tracking!
-            /**
-             * @todo put in platform
-             */
-            var tracking = {
-                googlePlus: {site: 'Google', action: '+1'},
-                facebook: {site: 'facebook', action: 'like'},
-                twitter: {site: 'twitter', action: 'tweet'},
-                digg: {site: 'digg', action: 'add'},
-                delicious: {site: 'delicious', action: 'add'},
-                stumbleupon: {site: 'stumbleupon', action: 'add'},
-                linkedin: {site: 'linkedin', action: 'share'},
-                pinterest: {site: 'pinterest', action: 'pin'}
-            };
-            _gaq.push(['_trackSocial', tracking[site].site, tracking[site].action]);
+            infos = this.platforms[site].trackingAction;
+            _gaq.push(['_trackSocial', infos.site, infos.action]);
         }
     };
 

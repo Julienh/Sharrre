@@ -13,6 +13,7 @@ SharrrePlatform.register("stumbleupon", function (options) {
                 //"http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}&format=jsonp&callback=?"
                 return url + '?url={url}&type=stumbleupon';
             },
+            trackingAction: {site: 'stumbleupon', action: 'add'},
             // @todo Doesn't work apparently
             load: function (self) {
                 var sett = this.settings;

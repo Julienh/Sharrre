@@ -14,6 +14,7 @@ SharrrePlatform.register("googlePlus", function (options) {
         url: function (url) {
             return url + '?url={url}&type=googlePlus';
         },
+        trackingAction: {site: 'linkedin', action: 'share'},
         load: function (self) {
             var sett = this.settings;
             //$(self.element).find('.buttons').append('<div class="button googleplus"><g:plusone size="'+self.options.buttons.googlePlus.size+'" href="'+self.options.url+'"></g:plusone></div>');

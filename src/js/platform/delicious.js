@@ -13,6 +13,7 @@ SharrrePlatform.register("delicious", function (options) {
         url: function (url) {
             return 'http://feeds.delicious.com/v2/json/urlinfo/data?url={url}&callback=?';
         },
+        trackingAction: {site: 'delicious', action: 'add'},
         load: function (self) {
             if (self.options.buttons.delicious.size == 'tall') {//tall
                 var css = 'width:50px;',

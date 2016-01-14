@@ -12,7 +12,8 @@ SharrrePlatform.register("linkedin", function (options) {
         url: function (test) {
             return "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
         },
-        //@todo Doesn't always load...
+        trackingAction: {site: 'digg', action: 'add'},
+        //@todo Doesn't load properly when hovering
         load: function (self) {
             var sett = this.settings;
             $(self.element).find('.buttons').append('<div class="button linkedin"><script type="in/share" data-url="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-counter="' + sett.counter + '"></script></div>');
