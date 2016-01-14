@@ -24,15 +24,16 @@ SharrrePlatform.register("pinterest", function (options) {
                 s.parentNode.insertBefore(li, s);
             })();
 
-            console.log(window);
             if (window.parsePinBtns) {
                 window.parsePinBtns();
             }
+            $(self.element).find('.pinterest').on('click', function(){
+                self.openPopup('pinterest');
+            });
         },
         tracking: function () {
         },
         popup: function (opt) {
-            console.log('pp');
             window.open('http://pinterest.com/pin/create/button/?url=' +
                 encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url)) +
                 '&media=' + encodeURIComponent(opt.buttons.pinterest.media) +
