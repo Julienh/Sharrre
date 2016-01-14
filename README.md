@@ -1,6 +1,15 @@
 # jQuery Sharrre Plugin
 Make your sharing widget! Sharrre is a jQuery plugin that allows you to create nice widgets sharing for Facebook, Twitter, Google Plus (with PHP script) and more. More information on [Sharrre](http://sharrre.com/#demos)
 
+# Supported platforms
+* Delicious
+* Facebook
+* Google+
+* LinkedIn
+* Pinterest
+* Stumbleupon
+* Twitter (no counter since Twitter disabled it in Nov. 2015)
+
 # Usage
 
 ```
