@@ -1,6 +1,6 @@
 /*!
  *  Sharrre.com - Make your sharing widget!
- *  Version: beta 1.3.5
+ *  Version: 2.0.0
  *  Author: Julien Hany
  *  License: MIT http://en.wikipedia.org/wiki/MIT_License or GPLv2 http://en.wikipedia.org/wiki/GNU_General_Public_License
  */
