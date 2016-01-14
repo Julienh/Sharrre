@@ -2,7 +2,7 @@ SharrrePlatform.register("twitter", function (options) {
     defaultSettings = {  //http://twitter.com/about/resources/tweetbutton
         url: '',  //if you need to personalize url button
         urlCount: false,  //if you want to use personnalize button url on global counter
-        count: 'horizontal',
+        count: false,
         hashtags: '',
         via: '',
         related: '',
