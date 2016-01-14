@@ -1,76 +1,98 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<title>Sharrre.com</title>
-  <meta name="description" content="Sharrre" />
-  <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
-  <script src="jquery.sharrre.min.js"></script>
-  <script>
-  $(function(){
-    $('#demo1').sharrre({
-      share: {
-        googlePlus: true,
-        facebook: true,
-        twitter: true,
-        delicious: true
-      },
-      buttons: {
-        googlePlus: {size: 'tall'},
-        facebook: {layout: 'box_count'},
-        twitter: {count: 'vertical'},
-        delicious: {size: 'tall'}
-      },
-      hover: function(api, options){
-        $(api.element).find('.buttons').show();      
-      },
-      hide: function(api, options){
-        $(api.element).find('.buttons').hide();
-      }
-    });
-
-    $('#demo2').sharrre({
-      share: {
-        googlePlus: true,
-        facebook: true,
-        twitter: true
-      },
-      url: 'http://sharrre.com',
-      enableHover: false
-    });
-
-      $('#demo3').sharrre({
-          share: {
-              twitter: true,
-              facebook: true,
-              googlePlus: true
-          },
-          template: '<div class="box"><div class="left">Share</div><div class="middle"><a href="#" class="facebook">f</a><a href="#" class="twitter">t</a><a href="#" class="googleplus">+1</a></div><div class="right">{total}</div></div>',
-          enableHover: false,
-          enableTracking: true,
-          render: function(api, options){
-              $(api.element).on('click', '.twitter', function() {
-                  api.openPopup('twitter');
-              });
-              $(api.element).on('click', '.facebook', function() {
-                  api.openPopup('facebook');
-              });
-              $(api.element).on('click', '.googleplus', function() {
-                  api.openPopup('googlePlus');
-              });
-          }
-      });
-  });
-  </script>
-    <link rel="stylesheet" href="dist/style.css">
+    <meta charset="UTF-8">
+    <title>Sharrre.com</title>
+    <meta name="description" content="Sharrre"/>
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="src/js/platform/platform.js"></script>
+    <script src="src/js/platform/twitter.js"></script>
+    <script src="src/js/platform/googlePlus.js"></script>
+    <script src="src/js/platform/facebook.js"></script>
+    <script src="src/js/platform/digg.js"></script>
+    <script src="src/js/platform/delicious.js"></script>
+    <script src="src/js/platform/stumbleupon.js"></script>
+    <script src="src/js/platform/linkedin.js"></script>
+    <script src="src/js/platform/pinterest.js"></script>
+    <script src="src/js/jquery.sharrre.js"></script>
+    <link rel="stylesheet" href="dist/test.css">
 </head>
 <body>
-  <h1>Sharrre demo</h1>
-  <div id="demo1" data-title="sharrre" data-url="http://sharrre.com" ></div>
-  <br /><br />
-  <div id="demo2"></div>
-  <br /><br />
-  <div id="demo3"></div>
-</body>
-</html>
 
+<script>
+    $(function () {
+        $('h1').each(function () {
+            $this = $(this);
+            $this.append("<a class='show-source'>Show source</a>");
+        });
+
+        $(document).on('click', '.show-source', function () {
+            $this = $(this);
+            console.log('clickos');
+            $script = $this.parent().prev("script");
+            console.log($script.length);
+            $this.parent().append("<div class='source'>" + $script.html() + "</div>");
+            $this.remove();
+            console.log($script.html());
+        });
+    });
+
+</script>
+
+<script>
+    $(function () {
+        $('#demo-all').sharrre({
+            share: {
+                googlePlus: true,
+                facebook: true,
+                twitter: true,
+                delicious: true,
+                stumbleupon: true,
+                linkedin: true,
+                pinterest: true
+            },
+            buttons: {
+                facebook: {},
+                twitter: {},
+                delicious: {},
+                linkedin: {},
+                pinterest: {}
+            },
+            url: 'http://sharrre.com'
+        });
+    });
+</script>
+<h1>All standard buttons</h1>
+
+<div id="demo-all" class="clearfix"></div>
+
+
+<script>
+    $(function () {
+        $('#demo-no-count').sharrre({
+            share: {
+                googlePlus: true,
+                facebook: true,
+                twitter: true,
+                delicious: true,
+                stumbleupon: true,
+                linkedin: true,
+                pinterest: true
+            },
+            buttons: {
+                facebook: {},
+                twitter: {},
+                delicious: {},
+                linkedin: {},
+                pinterest: {}
+            },
+            url: 'http://sharrre.com',
+            enableCounter: false
+        });
+    });
+</script>
+<h1>All standard buttons (without counter)</h1>
+
+<div id="demo-no-count" class="clearfix"></div>
+
+</body>
