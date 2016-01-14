@@ -19,9 +19,15 @@ SharrrePlatform.register("pinterest", function (options) {
                 li.type = 'text/javascript';
                 li.async = true;
                 li.src = 'https://assets.pinterest.com/js/pinit.js';
+                li.setAttribute('data-pin-build', 'parsePinBtns');
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(li, s);
             })();
+
+            console.log(window);
+            if (window.parsePinBtns) {
+                window.parsePinBtns();
+            }
         },
         tracking: function () {
         },
