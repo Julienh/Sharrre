@@ -80,7 +80,7 @@ SharrrePlatform.register("facebook", function (options) {
             }, 1000);
         },
         popup: function (opt) {
-            window.open("http://www.facebook.com/sharer/sharer.php?u=" +
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" +
             encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
             "&t=" + opt.text + "", "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }

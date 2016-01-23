@@ -32,7 +32,7 @@ SharrrePlatform.register("tumblr", function (options) {
                 'data-notes="' + sett.notes + '" ' +
 
                 'data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" ' +
-                ' href="http://www.tumblr.com/share' +
+                ' href="https://www.tumblr.com/share' +
                 '">' + sett.title + '</a></div>');
             var loading = 0;
             if (typeof Tumblr === 'undefined' && loading == 0) {
@@ -52,7 +52,7 @@ SharrrePlatform.register("tumblr", function (options) {
 
         },
         popup: function (opt) {
-            window.open("http://www.tumblr.com/share/link?canonicalUrl=" +
+            window.open("https://www.tumblr.com/share/link?canonicalUrl=" +
                 encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) + "&name="
                 + encodeURIComponent(this.settings.name) +
                 "&description=" + encodeURIComponent(this.settings.description),

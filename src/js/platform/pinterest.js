@@ -41,7 +41,7 @@ SharrrePlatform.register("pinterest", function (options) {
         tracking: function () {
         },
         popup: function (opt) {
-            window.open('http://pinterest.com/pin/create/button/?url=' +
+            window.open('https://pinterest.com/pin/create/button/?url=' +
                 encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url)) +
                 '&media=' + encodeURIComponent(opt.buttons.pinterest.media) +
                 '&description=' + opt.buttons.pinterest.description, 'pinterest',

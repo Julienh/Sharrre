@@ -35,7 +35,7 @@ SharrrePlatform.register("googlePlus", function (options) {
                     var po = document.createElement('script');
                     po.type = 'text/javascript';
                     po.async = true;
-                    po.src = 'http://apis.google.com/js/plusone.js';
+                    po.src = 'https://apis.google.com/js/plusone.js';
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(po, s);
                 })();
