@@ -15,6 +15,7 @@
     <script src="src/js/platform/linkedin.js"></script>
     <script src="src/js/platform/pinterest.js"></script>
     <script src="src/js/platform/tumblr.js"></script>
+    <script src="src/js/platform/reddit.js"></script>
     <script src="src/js/jquery.sharrre.js"></script>
     <link rel="stylesheet" href="dist/test.css">
 </head>
@@ -48,7 +49,8 @@
                 stumbleupon: true,
                 linkedin: true,
                 pinterest: true,
-                tumblr: true
+                tumblr: true,
+                reddit: true
             },
             buttons: {
                 facebook: {},
@@ -57,7 +59,13 @@
                 linkedin: {},
                 pinterest: {}
             },
-            url: 'http://sharrre.com'
+            hover: function (api, options) {
+                $(api.element).find('.buttons').show();
+            },
+            hide: function (api, options) {
+                $(api.element).find('.buttons').hide();
+            },
+            url: 'https://github.com'
         });
     });
 </script>
@@ -77,7 +85,8 @@
                 stumbleupon: true,
                 linkedin: true,
                 pinterest: true,
-                tumblr: true
+                tumblr: true,
+                reddit: true
             },
             buttons: {
                 facebook: {},
@@ -98,7 +107,7 @@
 <link type="text/css" rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script>
-    var list = ['facebook', 'twitter', 'tumblr'];
+    var list = ['facebook', 'twitter', 'tumblr', 'reddit'];
     $(function () {
         $('#demo-custom').sharrre({
             share: {
@@ -109,7 +118,8 @@
                 stumbleupon: true,
                 linkedin: true,
                 pinterest: true,
-                tumblr: true
+                tumblr: true,
+                reddit: true
             },
             buttons: {
                 facebook: {
