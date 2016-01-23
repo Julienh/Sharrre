@@ -5,10 +5,11 @@ $json        = array('url' => '', 'count' => 0);
 $json['url'] = $_GET['url'];
 $url         = urlencode($_GET['url']);
 $type        = urlencode($_GET['type']);
-
+$proxy       = null;
+$proxyAuth   = array();
 if (filter_var($_GET['url'], FILTER_VALIDATE_URL)) {
     if ($type == 'googlePlus') { //source http://www.helmutgranda.com/2011/11/01/get-a-url-google-count-via-php/
-        $contents = parse('https://plusone.google.com/u/0/_/+1/fastbutton?url='.$url.'&count=true');
+        $contents = parse('https://plusone.google.com/u/0/_/+1/fastbutton?url=' . $url . '&count=true');
 
         preg_match('/window\.__SSR = {c: ([\d]+)/', $contents, $matches);
 
@@ -29,6 +30,8 @@ echo str_replace('\\/', '/', json_encode($json));
 
 function parse($encUrl)
 {
+    global $proxy;
+    global $proxyAuth;
     $options = array(
         CURLOPT_RETURNTRANSFER => true, // return web page
         CURLOPT_HEADER         => false, // don't return headers
@@ -43,7 +46,12 @@ function parse($encUrl)
         CURLOPT_SSL_VERIFYPEER => false,
     );
     $ch      = curl_init();
-
+    if ($proxy != null) {
+        $options[CURLOPT_PROXY] = $proxy;
+        if (isset($proxyAuth['user']) && isset($proxyAuth['pwd'])) {
+            $options[CURLOPT_PROXYUSERPWD] = $proxyAuth['user'] . ':' . $proxyAuth['pwd'];
+        }
+    }
     $options[CURLOPT_URL] = $encUrl;
     curl_setopt_array($ch, $options);
 
