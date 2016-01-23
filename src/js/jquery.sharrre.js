@@ -107,13 +107,13 @@
         }
 
         //add hover event
-        $(this.element).on('hover', function () {
+        $(this.element).on('mouseenter', function () {
             //load social button if enable and 1 time
             if ($(this).find('.buttons').length === 0 && self.options.enableHover === true) {
                 self.loadButtons();
             }
             self.options.hover(self, self.options);
-        }, function () {
+        }).on('mouseleave', function () {
             self.options.hide(self, self.options);
         });
 
