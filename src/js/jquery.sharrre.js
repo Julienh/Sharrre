@@ -158,7 +158,7 @@
             buttonUrl = '';
         }
         url = buttonUrl.replace('{url}', replaceUrl);
-        if (url != '' && self.options.urlCurl !== '') {  //urlCurl = '' if you don't want to used PHP script but used social button
+        if (url != '') {  //urlCurl = '' if you don't want to used PHP script but used social button
             $.getJSON(url, function (json) {
                 if (typeof json.count !== "undefined") {  //GooglePlus, Stumbleupon, Twitter, Pinterest and Digg
                     var temp = json.count + '';
