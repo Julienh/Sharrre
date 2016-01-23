@@ -118,7 +118,8 @@
         });
 
         //click event
-        $(this.element).click(function () {
+        $(this.element).click(function (e) {
+            e.preventDefault();
             self.options.click(self, self.options);
             return false;
         });
