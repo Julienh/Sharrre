@@ -24,7 +24,7 @@ After that you can choose which platform you need and load them in your project.
 
 # Usage
 
-```
+```javascript
 $('#sharrre').sharrre({
     share: {
         googlePlus: true,
@@ -38,13 +38,13 @@ $('#sharrre').sharrre({
 # Example
 **HTML**
 
-```
+```html
 <div id="demo1" data-title="sharrre" data-url="http://sharrre.com" ></div>
 ```
 
 **JS**
 
-```
+```javascript
 $(document).ready(function(){
     $('#demo1').sharrre({
         share: {
