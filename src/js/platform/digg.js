@@ -6,7 +6,11 @@ SharrrePlatform.register("digg", function (options) {
         url: '',  //if you need to personalize url button
         urlCount: false,  //if you want to use personnalize button url on global counter
         type: 'DiggCompact',
-        count: true
+        count: true,
+        popup: {
+            width: 650,
+            height: 360
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -40,8 +44,8 @@ SharrrePlatform.register("digg", function (options) {
         },
         popup: function (opt) {
             window.open("http://digg.com/tools/diggthis/submit?url=" +
-                encodeURIComponent((opt.buttons.digg.url !== '' ? opt.buttons.digg.url : opt.url)) +
-                "&title=" + opt.text + "&related=true&style=true", "", "toolbar=0, status=0, width=650, height=360");
+            encodeURIComponent((opt.buttons.digg.url !== '' ? opt.buttons.digg.url : opt.url)) +
+            "&title=" + opt.text + "&related=true&style=true", "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

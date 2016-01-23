@@ -3,14 +3,18 @@ SharrrePlatform.register("linkedin", function (options) {
         url: '',  //if you need to personalize url button
         urlCount: false,  //if you want to use personnalize button url on global counter
         counter: '',
-        count: true
+        count: true,
+        popup: {
+            width: 550,
+            height: 550
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
     return {
         settings: defaultSettings,
         url: function (test) {
-            return "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
+            return "https://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
         },
         trackingAction: {site: 'linkedin', action: 'share'},
         load: function (self) {
@@ -39,8 +43,8 @@ SharrrePlatform.register("linkedin", function (options) {
         },
         popup: function (opt) {
             window.open('https://www.linkedin.com/cws/share?url=' +
-                encodeURIComponent((opt.buttons.linkedin.url !== '' ? opt.buttons.linkedin.url : opt.url)) +
-                '&token=&isFramed=true', 'linkedin', 'toolbar=no,width=550,height=550');
+            encodeURIComponent((opt.buttons.linkedin.url !== '' ? opt.buttons.linkedin.url : opt.url)) +
+            '&token=&isFramed=true', 'linkedin', 'toolbar=no, width=' + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

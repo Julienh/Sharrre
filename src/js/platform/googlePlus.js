@@ -5,7 +5,11 @@ SharrrePlatform.register("googlePlus", function (options) {
         size: 'medium',
         lang: 'en-US',
         annotation: '',
-        count: true
+        count: true,
+        popup: {
+            width: 900,
+            height: 500
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -18,18 +22,20 @@ SharrrePlatform.register("googlePlus", function (options) {
         load: function (self) {
             var sett = this.settings;
             //$(self.element).find('.buttons').append('<div class="button googleplus"><g:plusone size="'+self.options.buttons.googlePlus.size+'" href="'+self.options.url+'"></g:plusone></div>');
-            $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' + sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-annotation="' + sett.annotation + '"></div></div>');
+            $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' +
+            sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) +
+            '" data-annotation="' + sett.annotation + '"></div></div>');
             window.___gcfg = {
                 lang: sett.lang
             };
             var loading = 0;
-            if (typeof gapi === 'undefined' && loading == 0) {
+            if ((typeof gapi === 'undefined' || typeof gapi.plusone === 'undefined') && loading == 0) {
                 loading = 1;
                 (function () {
                     var po = document.createElement('script');
                     po.type = 'text/javascript';
                     po.async = true;
-                    po.src = 'http://apis.google.com/js/plusone.js';
+                    po.src = 'https://apis.google.com/js/plusone.js';
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(po, s);
                 })();
@@ -41,7 +47,9 @@ SharrrePlatform.register("googlePlus", function (options) {
         tracking: function () {
         },
         popup: function (opt) {
-            window.open("https://plus.google.com/share?hl=" + opt.buttons.googlePlus.lang + "&url=" + encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=900, height=500");
+            window.open("https://plus.google.com/share?hl=" + opt.buttons.googlePlus.lang +
+                "&url=" + encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)),
+                "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

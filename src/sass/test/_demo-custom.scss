@@ -1,0 +1,16 @@
+#demo-custom {
+    a {
+        cursor: pointer;
+        color: #0d3349;
+        padding: 10px;
+        border: 1px solid #2b81af;
+        margin: 4px;
+        background: #0b97c4;
+        transition: all .2s;
+
+        &:hover {
+            background: #528CE0;
+            color: #fff;
+        }
+    }
+}

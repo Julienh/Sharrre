@@ -24,6 +24,11 @@
             enableHover: true, //disable if you want to personalize hover event with callback
             enableCounter: true, //disable if you just want use buttons
             enableTracking: false, //tracking with google analitycs
+            defaultUrl: "javascript:void(0);",
+            popup: { // Set the popup width and height
+                width: 900,
+                height: 500
+            },
             hover: function () {
             }, //personalize hover event with this callback function
             hide: function () {
@@ -88,7 +93,12 @@
                     }
                 }
             });
+        } else if (self.options.template !== '') {
+            self.renderer();
+            self.options.count[name] = 0;
+            self.rendererPerso();
         }
+
         if (self.options.template !== '') {  //for personalized button (with template)
             this.options.render(this, this.options);
         }
@@ -209,9 +219,9 @@
         }
         else { //template by defaults
             $(this.element).html(
-                '<div class="box"><a class="count" href="#">' + total + '</a>' +
-                    (this.options.title !== '' ? '<a class="share" href="#">' + this.options.title + '</a>' : '') +
-                    '</div>'
+                '<div class="box"><a class="count" href="' + this.options.defaultUrl + '">' + total + '</a>' +
+                (this.options.title !== '' ? '<a class="share" href="' + this.options.defaultUrl + '">' + this.options.title + '</a>' : '') +
+                '</div>'
             );
         }
     };

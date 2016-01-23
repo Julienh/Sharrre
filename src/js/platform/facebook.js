@@ -10,7 +10,13 @@ SharrrePlatform.register("facebook", function (options) {
         faces: 'false',
         colorscheme: '',
         font: '',
-        lang: 'en_US'
+        lang: 'en_US',
+        share: '',
+        appId: '',
+        popup: {
+            width: 900,
+            height: 500
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -23,7 +29,18 @@ SharrrePlatform.register("facebook", function (options) {
         trackingAction: {site: 'facebook', action: 'like'},
         load: function (self) {
             var sett = this.settings;
-            $(self.element).find('.buttons').append('<div class="button facebook"><div id="fb-root"></div><div class="fb-like" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-send="' + sett.send + '" data-layout="' + sett.layout + '" data-width="' + sett.width + '" data-show-faces="' + sett.faces + '" data-action="' + sett.action + '" data-colorscheme="' + sett.colorscheme + '" data-font="' + sett.font + '" data-via="' + sett.via + '"></div></div>');
+            $(self.element).find('.buttons').append('<div class="button facebook"><div id="fb-root"></div>' +
+            '<div class="fb-like" data-href="' + (sett.url !== '' ? sett.url : self.options.url) +
+            '" data-send="' + sett.send +
+            '" data-layout="' + sett.layout +
+            '" data-width="' + sett.width +
+            '" data-show-faces="' + sett.faces +
+            '" data-action="' + sett.action +
+            '" data-colorscheme="' + sett.colorscheme +
+            '" data-font="' + sett.font +
+            '" data-via="' + sett.via +
+            '" data-share="' + sett.share +
+            '"></div></div>');
             var loading = 0;
             if (typeof FB === 'undefined' && loading == 0) {
                 loading = 1;
@@ -35,6 +52,9 @@ SharrrePlatform.register("facebook", function (options) {
                     js = d.createElement(s);
                     js.id = id;
                     js.src = 'https://connect.facebook.net/' + sett.lang + '/all.js#xfbml=1';
+                    if (sett.appId) {
+                        js.src += '&appId=' + sett.appId;
+                    }
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
             }
@@ -60,9 +80,9 @@ SharrrePlatform.register("facebook", function (options) {
             }, 1000);
         },
         popup: function (opt) {
-            window.open("http://www.facebook.com/sharer/sharer.php?u=" +
-                encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
-                "&t=" + opt.text + "", "", "toolbar=0, status=0, width=900, height=500");
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" +
+            encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
+            "&t=" + opt.text + "", "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

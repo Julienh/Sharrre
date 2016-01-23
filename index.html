@@ -14,6 +14,7 @@
     <script src="src/js/platform/stumbleupon.js"></script>
     <script src="src/js/platform/linkedin.js"></script>
     <script src="src/js/platform/pinterest.js"></script>
+    <script src="src/js/platform/tumblr.js"></script>
     <script src="src/js/jquery.sharrre.js"></script>
     <link rel="stylesheet" href="dist/test.css">
 </head>
@@ -28,12 +29,9 @@
 
         $(document).on('click', '.show-source', function () {
             $this = $(this);
-            console.log('clickos');
             $script = $this.parent().prev("script");
-            console.log($script.length);
             $this.parent().append("<div class='source'>" + $script.html() + "</div>");
             $this.remove();
-            console.log($script.html());
         });
     });
 
@@ -49,7 +47,8 @@
                 delicious: true,
                 stumbleupon: true,
                 linkedin: true,
-                pinterest: true
+                pinterest: true,
+                tumblr: true
             },
             buttons: {
                 facebook: {},
@@ -77,7 +76,8 @@
                 delicious: true,
                 stumbleupon: true,
                 linkedin: true,
-                pinterest: true
+                pinterest: true,
+                tumblr: true
             },
             buttons: {
                 facebook: {},
@@ -94,5 +94,60 @@
 <h1>All standard buttons (without counter)</h1>
 
 <div id="demo-no-count" class="clearfix"></div>
+
+<link type="text/css" rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script>
+    var list = ['facebook', 'twitter', 'tumblr'];
+    $(function () {
+        $('#demo-custom').sharrre({
+            share: {
+                googlePlus: true,
+                facebook: true,
+                twitter: true,
+                delicious: true,
+                stumbleupon: true,
+                linkedin: true,
+                pinterest: true,
+                tumblr: true
+            },
+            buttons: {
+                facebook: {
+                    popup: {
+                        width: 1200,
+                        height: 900
+                    }
+                },
+                twitter: {},
+                delicious: {},
+                linkedin: {},
+                pinterest: {}
+            },
+            url: 'http://sharrre.com',
+
+            enableCounter: false,
+            enableHover: false,
+            template: function () {
+                content = '';
+                for (i in list) {
+                    service = list[i];
+                    content += '<a class="' + service + '"><i class="fa fa-' + service + '"></i></a>';
+                }
+                return content;
+            }(),
+            render: function (api, options) {
+                for (i in list) {
+                    service = list[i];
+                    $(api.element).on('click', '.' + service, function () {
+                        api.openPopup(this.className);
+                    });
+                }
+            }
+        });
+    });
+</script>
+<h1>Customized buttons</h1>
+
+<div id="demo-custom" class="clearfix"></div>
 
 </body>

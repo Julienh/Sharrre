@@ -3,12 +3,19 @@ SharrrePlatform.register("pinterest", function (options) {
         url: '',  //if you need to personalize url button
         media: '',
         description: '',
-        layout: 'horizontal'
+        layout: 'horizontal',
+        popup: {
+            width: 700,
+            height: 300
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
     return {
         settings: defaultSettings,
+        url: function (test) {
+            return "https://api.pinterest.com/v1/urls/count.json?url={url}&callback=?";
+        },
         trackingAction: {site: 'pinterest', action: 'pin'},
         load: function (self) {
             var sett = this.settings;
@@ -27,17 +34,18 @@ SharrrePlatform.register("pinterest", function (options) {
             if (window.parsePinBtns) {
                 window.parsePinBtns();
             }
-            $(self.element).find('.pinterest').on('click', function(){
+            $(self.element).find('.pinterest').on('click', function () {
                 self.openPopup('pinterest');
             });
         },
         tracking: function () {
         },
         popup: function (opt) {
-            window.open('http://pinterest.com/pin/create/button/?url=' +
+            window.open('https://pinterest.com/pin/create/button/?url=' +
                 encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url)) +
                 '&media=' + encodeURIComponent(opt.buttons.pinterest.media) +
-                '&description=' + opt.buttons.pinterest.description, 'pinterest', 'toolbar=no,width=700,height=300');
+                '&description=' + opt.buttons.pinterest.description, 'pinterest',
+                'toolbar=no,width=' + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });
