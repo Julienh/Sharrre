@@ -107,7 +107,7 @@
         }
 
         //add hover event
-        $(this.element).hover(function () {
+        $(this.element).on('hover', function () {
             //load social button if enable and 1 time
             if ($(this).find('.buttons').length === 0 && self.options.enableHover === true) {
                 self.loadButtons();
@@ -158,7 +158,7 @@
             buttonUrl = '';
         }
         url = buttonUrl.replace('{url}', replaceUrl);
-        if (url != '' && self.options.urlCurl !== '') {  //urlCurl = '' if you don't want to used PHP script but used social button
+        if (url != '') {  //urlCurl = '' if you don't want to used PHP script but used social button
             $.getJSON(url, function (json) {
                 if (typeof json.count !== "undefined") {  //GooglePlus, Stumbleupon, Twitter, Pinterest and Digg
                     var temp = json.count + '';
@@ -271,17 +271,17 @@
         var args = arguments;
         if (options === undefined || typeof options === 'object') {
             return this.each(function () {
-                if (!$.data(this, 'plugin_' + pluginName)) {
-                    $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+                if (!$(this).data('plugin_' + pluginName)) {
+                    $(this).data('plugin_' + pluginName, new Plugin(this, options));
                 }
             });
         } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
             return this.each(function () {
-                var instance = $.data(this, 'plugin_' + pluginName);
+                var instance = $(this).data('plugin_' + pluginName);
                 if (instance instanceof Plugin && typeof instance[options] === 'function') {
                     instance[options].apply(instance, Array.prototype.slice.call(args, 1));
                 }
             });
         }
     };
-})(jQuery, window, document);
+})(window.jQuery || window.Zepto, window, document);
