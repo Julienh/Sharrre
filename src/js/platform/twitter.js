@@ -6,7 +6,11 @@ SharrrePlatform.register("twitter", function (options) {
         hashtags: '',
         via: '',
         related: '',
-        lang: 'en'
+        lang: 'en',
+        popup: {
+            width: 650,
+            height: 360
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -20,10 +24,10 @@ SharrrePlatform.register("twitter", function (options) {
             var sett = this.settings;
             $(self.element).find('.buttons').append(
                 '<div class="button twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="'
-                    + (sett.url !== '' ? sett.url : self.options.url) +
-                    '" data-count="' + sett.count + '" data-text="' + self.options.text +
-                    '" data-via="' + sett.via + '" data-hashtags="' + sett.hashtags +
-                    '" data-related="' + sett.related + '" data-lang="' + sett.lang + '">Tweet</a></div>');
+                + (sett.url !== '' ? sett.url : self.options.url) +
+                '" data-count="' + sett.count + '" data-text="' + self.options.text +
+                '" data-via="' + sett.via + '" data-hashtags="' + sett.hashtags +
+                '" data-related="' + sett.related + '" data-lang="' + sett.lang + '">Tweet</a></div>');
             var loading = 0;
             if (typeof twttr === 'undefined' && loading == 0) {
                 loading = 1;
@@ -37,7 +41,7 @@ SharrrePlatform.register("twitter", function (options) {
                 })();
             }
             else {
-                $.ajax({ url: 'https://platform.twitter.com/widgets.js', dataType: 'script', cache: true}); //http://stackoverflow.com/q/6536108
+                $.ajax({url: 'https://platform.twitter.com/widgets.js', dataType: 'script', cache: true}); //http://stackoverflow.com/q/6536108
             }
         },
         tracking: function () {
@@ -54,8 +58,8 @@ SharrrePlatform.register("twitter", function (options) {
         },
         popup: function (opt) {
             window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(opt.text) + "&url="
-                + encodeURIComponent((this.settings.url !== '' ? this.setting.url : opt.url))
-                + (this.settings.via !== '' ? '&via=' + this.settings.via : ''), "", "toolbar=0, status=0, width=650, height=360");
+            + encodeURIComponent((this.settings.url !== '' ? this.setting.url : opt.url))
+            + (this.settings.via !== '' ? '&via=' + this.settings.via : ''), "", "toolbar=0, status=0,width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

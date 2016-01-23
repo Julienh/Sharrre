@@ -12,7 +12,11 @@ SharrrePlatform.register("facebook", function (options) {
         font: '',
         lang: 'en_US',
         share: '',
-        appId: ''
+        appId: '',
+        popup: {
+            width: 900,
+            height: 500
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -78,7 +82,7 @@ SharrrePlatform.register("facebook", function (options) {
         popup: function (opt) {
             window.open("http://www.facebook.com/sharer/sharer.php?u=" +
             encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
-            "&t=" + opt.text + "", "", "toolbar=0, status=0, width=900, height=500");
+            "&t=" + opt.text + "", "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

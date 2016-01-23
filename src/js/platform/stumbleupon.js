@@ -3,7 +3,11 @@ SharrrePlatform.register("stumbleupon", function (options) {
             url: '',  //if you need to personalize url button
             urlCount: false,  //if you want to use personnalize button url on global counter
             size: 'medium', //medium or tall,
-            count: true
+            count: true,
+            popup: {
+                width: 550,
+                height: 550
+            }
         };
 
         defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -45,7 +49,7 @@ SharrrePlatform.register("stumbleupon", function (options) {
             popup: function (opt) {
                 window.open('http://www.stumbleupon.com/badge/?url=' +
                     encodeURIComponent((opt.buttons.stumbleupon.url !== '' ? opt.buttons.stumbleupon.url : opt.url)),
-                    'stumbleupon', 'toolbar=no,width=550,height=550');
+                    'stumbleupon', 'toolbar=no, width=' + this.settings.popup.width + ", height=" + this.settings.popup.height);
             }
         };
     }

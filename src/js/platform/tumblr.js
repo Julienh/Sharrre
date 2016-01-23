@@ -7,7 +7,11 @@ SharrrePlatform.register("tumblr", function (options) {
         count: false,
         title: 'Share on Tumblr',
         color: 'blue',
-        notes: 'none'
+        notes: 'none',
+        popup: {
+            width: 900,
+            height: 500
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -52,7 +56,7 @@ SharrrePlatform.register("tumblr", function (options) {
                 encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) + "&name="
                 + encodeURIComponent(this.settings.name) +
                 "&description=" + encodeURIComponent(this.settings.description),
-                "", "toolbar=0, status=0, width=900, height=500");
+                "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });

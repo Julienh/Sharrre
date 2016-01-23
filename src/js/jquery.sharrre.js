@@ -24,6 +24,10 @@
             enableHover: true, //disable if you want to personalize hover event with callback
             enableCounter: true, //disable if you just want use buttons
             enableTracking: false, //tracking with google analitycs
+            popup: { // Set the popup width and height
+                width: 900,
+                height: 500
+            },
             hover: function () {
             }, //personalize hover event with this callback function
             hide: function () {
@@ -89,7 +93,6 @@
                 }
             });
         } else {
-            console.log('no counter');
             self.renderer();
             self.options.count[name] = 0;
             self.rendererPerso();
@@ -209,7 +212,6 @@
             total = this.shorterTotal(total);
         }
 
-        console.log(template);
         if (template !== '') {  //if there is a template
             template = template.replace('{total}', total);
             $(this.element).html(template);

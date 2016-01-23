@@ -29,12 +29,9 @@
 
         $(document).on('click', '.show-source', function () {
             $this = $(this);
-            console.log('clickos');
             $script = $this.parent().prev("script");
-            console.log($script.length);
             $this.parent().append("<div class='source'>" + $script.html() + "</div>");
             $this.remove();
-            console.log($script.html());
         });
     });
 
@@ -115,13 +112,19 @@
                 tumblr: true
             },
             buttons: {
-                facebook: {},
+                facebook: {
+                    popup: {
+                        width: 1200,
+                        height: 900
+                    }
+                },
                 twitter: {},
                 delicious: {},
                 linkedin: {},
                 pinterest: {}
             },
             url: 'http://sharrre.com',
+
             enableCounter: false,
             enableHover: false,
             template: function () {
@@ -135,7 +138,6 @@
             render: function (api, options) {
                 for (i in list) {
                     service = list[i];
-                    console.log(service);
                     $(api.element).on('click', '.' + service, function () {
                         api.openPopup(this.className);
                     });

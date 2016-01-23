@@ -5,7 +5,11 @@ SharrrePlatform.register("googlePlus", function (options) {
         size: 'medium',
         lang: 'en-US',
         annotation: '',
-        count: true
+        count: true,
+        popup: {
+            width: 900,
+            height: 500
+        }
     };
 
     defaultSettings = $.extend(true, {}, defaultSettings, options);
@@ -45,7 +49,7 @@ SharrrePlatform.register("googlePlus", function (options) {
         popup: function (opt) {
             window.open("https://plus.google.com/share?hl=" + opt.buttons.googlePlus.lang +
                 "&url=" + encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)),
-                "", "toolbar=0, status=0, width=900, height=500");
+                "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
 });
