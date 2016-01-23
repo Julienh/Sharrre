@@ -16,6 +16,7 @@
     <script src="src/js/platform/pinterest.js"></script>
     <script src="src/js/platform/tumblr.js"></script>
     <script src="src/js/platform/reddit.js"></script>
+    <script src="src/js/platform/twitterFollow.js"></script>
     <script src="src/js/jquery.sharrre.js"></script>
     <link rel="stylesheet" href="dist/test.css">
 </head>
@@ -40,34 +41,34 @@
 
 <script>
     $(function () {
-        $('#demo-all').sharrre({
-            share: {
-                googlePlus: true,
-                facebook: true,
-                twitter: true,
-                delicious: true,
-                stumbleupon: true,
-                linkedin: true,
-                pinterest: true,
-                tumblr: true,
-                reddit: true
-            },
-            buttons: {
-                facebook: {},
-                twitter: {},
-                delicious: {},
-                linkedin: {},
-                pinterest: {}
-            },
-            hover: function (api, options) {
-                $(api.element).find('.buttons').show();
-            },
-            hide: function (api, options) {
-                $(api.element).find('.buttons').hide();
-            },
-            url: 'https://github.com'
-        });
-    });
+    /*  $('#demo-all').sharrre({
+     share: {
+     googlePlus: true,
+     facebook: true,
+     twitter: true,
+     delicious: true,
+     stumbleupon: true,
+     linkedin: true,
+     pinterest: true,
+     tumblr: true,
+     reddit: true
+     },
+     buttons: {
+     facebook: {},
+     twitter: {},
+     delicious: {},
+     linkedin: {},
+     pinterest: {}
+     },
+     hover: function (api, options) {
+     $(api.element).find('.buttons').show();
+     },
+     hide: function (api, options) {
+     $(api.element).find('.buttons').hide();
+     },
+     url: 'http://sharrre.com'
+     });
+     });
 </script>
 <h1>All standard buttons</h1>
 
@@ -76,29 +77,29 @@
 
 <script>
     $(function () {
-        $('#demo-no-count').sharrre({
-            share: {
-                googlePlus: true,
-                facebook: true,
-                twitter: true,
-                delicious: true,
-                stumbleupon: true,
-                linkedin: true,
-                pinterest: true,
-                tumblr: true,
-                reddit: true
-            },
-            buttons: {
-                facebook: {},
-                twitter: {},
-                delicious: {},
-                linkedin: {},
-                pinterest: {}
-            },
-            url: 'http://sharrre.com',
-            enableCounter: false
-        });
-    });
+    /*$('#demo-no-count').sharrre({
+     share: {
+     googlePlus: true,
+     facebook: true,
+     twitter: true,
+     delicious: true,
+     stumbleupon: true,
+     linkedin: true,
+     pinterest: true,
+     tumblr: true,
+     reddit: true
+     },
+     buttons: {
+     facebook: {},
+     twitter: {},
+     delicious: {},
+     linkedin: {},
+     pinterest: {}
+     },
+     url: 'http://sharrre.com',
+     enableCounter: false
+     });
+     });
 </script>
 <h1>All standard buttons (without counter)</h1>
 
@@ -107,7 +108,7 @@
 <link type="text/css" rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script>
-    var list = ['facebook', 'twitter', 'tumblr', 'reddit'];
+    var list = ['facebook', 'twitter', 'tumblr', 'reddit', 'twitterFollow'];
     $(function () {
         $('#demo-custom').sharrre({
             share: {
@@ -119,7 +120,8 @@
                 linkedin: true,
                 pinterest: true,
                 tumblr: true,
-                reddit: true
+                reddit: true,
+                twitterFollow: true
             },
             buttons: {
                 facebook: {
@@ -131,7 +133,10 @@
                 twitter: {},
                 delicious: {},
                 linkedin: {},
-                pinterest: {}
+                pinterest: {},
+                twitterFollow: {
+                    user: 'GarethBale11'
+                }
             },
             url: 'http://sharrre.com',
 
@@ -159,5 +164,24 @@
 <h1>Customized buttons</h1>
 
 <div id="demo-custom" class="clearfix"></div>
+
+<script>
+    $(function () {
+        $('#follow').sharrre({
+            share: {
+                twitterFollow: true
+            },
+            buttons: {
+                twitterFollow: {
+                    user: 'GarethBale11'
+                }
+            },
+            url: 'https://github.com'
+        });
+    });
+</script>
+<h1>Twitter follow</h1>
+
+<div id="follow" class="clearfix"></div>
 
 </body>
