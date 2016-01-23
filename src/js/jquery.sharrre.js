@@ -88,7 +88,13 @@
                     }
                 }
             });
+        } else {
+            console.log('no counter');
+            self.renderer();
+            self.options.count[name] = 0;
+            self.rendererPerso();
         }
+
         if (self.options.template !== '') {  //for personalized button (with template)
             this.options.render(this, this.options);
         }
@@ -203,6 +209,7 @@
             total = this.shorterTotal(total);
         }
 
+        console.log(template);
         if (template !== '') {  //if there is a template
             template = template.replace('{total}', total);
             $(this.element).html(template);
@@ -210,8 +217,8 @@
         else { //template by defaults
             $(this.element).html(
                 '<div class="box"><a class="count" href="#">' + total + '</a>' +
-                    (this.options.title !== '' ? '<a class="share" href="#">' + this.options.title + '</a>' : '') +
-                    '</div>'
+                (this.options.title !== '' ? '<a class="share" href="#">' + this.options.title + '</a>' : '') +
+                '</div>'
             );
         }
     };
