@@ -1,0 +1,79 @@
+@import "test/demo-all";
+@import "test/demo-custom";
+@import "test/source";
+
+body {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+.share {
+    width: 100%;
+    display: inline-block;
+}
+
+.box {
+    width: 50px;
+}
+
+.count {
+    color: #444444;
+    display: block;
+    font-size: 17px;
+    line-height: 34px;
+    height: 34px;
+    padding: 4px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    background-color: #eee;
+    float: left;
+}
+
+.share {
+    color: #ddd;
+    display: block;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 3px;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    background-color: #9CCE39;
+}
+
+.buttons {
+    width: 500px;
+    background: #ddd;
+    float: left;
+    padding: 20px;
+}
+
+.button {
+    float: left;
+    margin: 0 10px;
+}

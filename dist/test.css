@@ -1,0 +1,90 @@
+#demo-custom a {
+  cursor: pointer;
+  color: #0d3349;
+  padding: 10px;
+  border: 1px solid #2b81af;
+  margin: 4px;
+  background: #0b97c4;
+  transition: all .2s; }
+  #demo-custom a:hover {
+    background: #528CE0;
+    color: #fff; }
+
+h1 a {
+  font-size: .85rem;
+  color: red;
+  display: block;
+  cursor: pointer; }
+
+.source {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  font-size: .90rem; }
+
+body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+.share {
+  width: 100%;
+  display: inline-block; }
+
+.box {
+  width: 50px; }
+
+.count {
+  color: #444444;
+  display: block;
+  font-size: 17px;
+  line-height: 34px;
+  height: 34px;
+  padding: 4px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 50px;
+  background-color: #eee;
+  float: left; }
+
+.share {
+  color: #ddd;
+  display: block;
+  font-size: 11px;
+  height: 16px;
+  line-height: 16px;
+  margin-top: 3px;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  width: 50px;
+  background-color: #9CCE39; }
+
+.buttons {
+  width: 500px;
+  background: #ddd;
+  float: left;
+  padding: 20px; }
+
+.button {
+  float: left;
+  margin: 0 10px; }
+
+/*# sourceMappingURL=test.css.map */

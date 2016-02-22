@@ -1,0 +1,15 @@
+{
+  "name": "sharrre",
+  "version": "2.0.0",
+  "description": "Make your sharing widget! Sharrre is a jQuery plugin that allows you to create nice widgets sharing for Facebook, Twitter, Google Plus (with PHP script) and more.",
+  "author": "Julien Hany",
+  "devDependencies": {
+    "grunt": "",
+    "grunt-cli": "",
+    "grunt-contrib-watch": "",
+    "grunt-contrib-uglify": "",
+    "grunt-contrib-copy": "",
+    "grunt-sass": "",
+    "bower": ""
+  }
+}
