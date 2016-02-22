@@ -8,7 +8,7 @@ Make your sharing widget! Sharrre is a jQuery plugin that allows you to create n
 * LinkedIn
 * Pinterest
 * Stumbleupon
-* Twitter Share + Follow (no counter since Twitter disabled it in Nov. 2015)
+* Twitter Share + Follow ([See counter alternatives](doc/twitter-counter.md))
 * Reddit
 * Tumblr
 
