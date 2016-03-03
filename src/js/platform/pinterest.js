@@ -42,9 +42,9 @@ SharrrePlatform.register("pinterest", function (options) {
         },
         popup: function (opt) {
             window.open('https://pinterest.com/pin/create/button/?url=' +
-                encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url)) +
-                '&media=' + encodeURIComponent(opt.buttons.pinterest.media) +
-                '&description=' + opt.buttons.pinterest.description, 'pinterest',
+                encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
+                '&media=' + encodeURIComponent(this.settings.media) +
+                '&description=' + this.settings.description, 'pinterest',
                 'toolbar=no,width=' + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }

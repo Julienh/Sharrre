@@ -48,7 +48,7 @@ SharrrePlatform.register("stumbleupon", function (options) {
             },
             popup: function (opt) {
                 window.open('https://www.stumbleupon.com/badge/?url=' +
-                    encodeURIComponent((opt.buttons.stumbleupon.url !== '' ? opt.buttons.stumbleupon.url : opt.url)),
+                    encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)),
                     'stumbleupon', 'toolbar=no, width=' + this.settings.popup.width + ", height=" + this.settings.popup.height);
             }
         };
