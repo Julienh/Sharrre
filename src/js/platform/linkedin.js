@@ -43,7 +43,7 @@ SharrrePlatform.register("linkedin", function (options) {
         },
         popup: function (opt) {
             window.open('https://www.linkedin.com/cws/share?url=' +
-            encodeURIComponent((opt.buttons.linkedin.url !== '' ? opt.buttons.linkedin.url : opt.url)) +
+            encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)) +
             '&token=&isFramed=true', 'linkedin', 'toolbar=no, width=' + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }

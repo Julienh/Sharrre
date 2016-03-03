@@ -47,8 +47,8 @@ SharrrePlatform.register("googlePlus", function (options) {
         tracking: function () {
         },
         popup: function (opt) {
-            window.open("https://plus.google.com/share?hl=" + opt.buttons.googlePlus.lang +
-                "&url=" + encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)),
+            window.open("https://plus.google.com/share?hl=" + this.settings.lang +
+                "&url=" + encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)),
                 "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
         }
     }
