@@ -1,6 +1,11 @@
 {
   "name": "sharrre",
-  "version": "2.0.0",
+  "version": "2.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Julienh/Sharrre.git"
+  },
+  "main": "dist/jquery.sharrre.min.js",
   "description": "Make your sharing widget! Sharrre is a jQuery plugin that allows you to create nice widgets sharing for Facebook, Twitter, Google Plus (with PHP script) and more.",
   "author": "Julien Hany",
   "devDependencies": {
